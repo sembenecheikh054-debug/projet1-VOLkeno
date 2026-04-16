@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashbord</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+
+</head>
+
+<body class="bg-gray-400  w-full">
+
+
+
+    <div id="overlay" onclick="fermerMenu()" class="hidden fixed inset-0 bg-black/40 z-30 lg:hidden"></div>
+    <div class="flex flex-col sm:flex-col md:flex-col  lg:flex-row bg-white">
+
+
+
+        <div class="fixed top-0 left-0 min-h-screen w-[250px] bg-gray-600 z-40
+           -translate-x-full lg:translate-x-0 lg:static
+           transition-transform duration-300 " id="sidebar">
+            <div class="flex">
+                <img src="image.svg" alt="">
+                <h1 class="text-white m-2 font-bold"> RED PRODUCT</h1>
+
+            </div>
+
+            <div class="flex flex-col mt-2">
+                <p class="text-white">Principale</p>
+                <div class="flex m-2 hover:bg-white">
+                    <img src="img/dashboard.svg" alt="" w-[10px]><a href="dashbord.html" class="p-2 "> Dashbord</a>
+                </div>
+                <div class="flex m-2 hover:bg-white">
+
+                    <img src="liste.svg" class="w-[24px]" alt=""><a href="" class="p-2 m-2">Liste des hotels</a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="flex flex-col flex-1  w-full">
+
+
+            <div class="m-2 flex  gap-2  lg:flex-row lg:justify-between lg:items-center ">
+                <div class="flex">
+                    <button onclick="toggleMenu()"
+                        class="lg:hidden    bg-gr text-black p-2 rounded-lg">
+                        ☰
+                    </button>
+                    <h2 class="font-bold text-[16px] mt-2 md:text-2xl lg:text-2xl"> Liste des hotels </h2>
+
+                </div>
+
+                <div class="flex flex gap-2  sm:flex-row md:flex-row  lg:flex-row lg:items-center">
+                    <div>
+                        <input type="text" placeholder="🔍Rechercher"
+                            class="rounded-2xl border border-black p-1 w-full lg:w-auto">
+                    </div>
+                    <div class="relative cursor-pointer">
+                        <span class="text-2xl">🔔</span>
+                        <span
+                            class="absolute -top-2 right-2 bg-yellow-400 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                            3
+                        </span>
+                    </div>
+                    <div class="flex flex-direction">
+                        <img src="img/img_moi.jpg" class="rounded-full w-9 h-9 cursor-pointer">
+                        <div>
+                            <img src="dec.svg" alt="" class="w-9 h-9">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- CONTENU -->
+            <div class="flex justify-between items-center">
+                <div class="p-4">
+                    <p class="text-2xl">Hotels <span class="text-gray-500 " id="compteur">0</span> </p>
+
+                </div>
+                <div>
+                    <button id="hot" class="p-2 border rounded-lg" onclick="ouvirform()" type="button">+creer un nouveau
+                        hotel</button>
+                </div>
+            </div>
+
+            <div class="  h-full m-2 ">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 
+             gap-4 mt-2 bg-gray-200 " id="card"> 
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <div class="fixed inset-0 z-50 bg-black/40 flex items-center justify-center hidden " id="modal">
+        <form action="" class="border bg-white rounded-2xl w-full max-w-md mx-4 p-6">
+
+
+
+            <div class="bg-gray-200 rounded-lg mb-2">CREER UN HOTEL</div>
+            <div class="flex gap-4">
+                <div class="flex flex-col">
+                    <label for="nom">Nom de l hotel</label>
+                    <input type="text" placeholder="EX:RADISSON" value="" id="nom" class="border rounded-lg p-2">
+                </div>
+                <div class="flex flex-col">
+                    <label for="adresse">Adresse </label>
+                    <input type="text" placeholder="EX:Les iles du saloum" value="" id="adresse"
+                        class="border rounded-lg p-2">
+                </div>
+            </div>
+
+            <div class="flex gap-4">
+                <div class="flex flex-col">
+                    <label for="mail">Email</label>
+                    <input type="email" placeholder="EX:info@gmail.com" value="" id="mail"
+                        class="border rounded-lg p-2 NN">
+                </div>
+                <div class="flex flex-col">
+                    <label for="tel">Numero de telephone </label>
+                    <input type="number" placeholder="EX:77 680 16 97" value="" id="tel" class="border rounded-lg p-2">
+                </div>
+            </div>
+            <div class="flex gap-4">
+                <div class="flex flex-col">
+                    <label for="nuit">Par nuit</label>
+                    <input type="number" placeholder="EX:22000 XOF" value="" id="nuit" class="border rounded-lg p-2">
+                </div>
+                <div class="flex flex-col">
+                    <label for="Devise">Devise </label>
+                    <select class="border p-2" name="" id="Devise">
+                        <option value="">F XOF</option>
+                        <option>XOF</option>
+                        <option>Euro</option>
+                        <option>Dollar</option>
+
+                    </select>
+                </div>
+            </div>
+            <img id="preview" class="hidden w-full h-20 object-cover rounded-lg mb-4 border">
+
+            <div>
+
+                <div id="upload-zone" onclick="document.getElementById('photo').click()"
+                    class="border-2 border-dashed mt-2 border-gray-300 rounded-lg p-6 text-center text-gray-400 cursor-pointer hover:border-blue-400 mb-4">
+                    📷 Cliquer pour choisir une image
+
+
+                    <input type="file" src="" alt="" id="photo" accept="image/*" class="hidden"
+                        onchange="previewImage(this)">
+
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <button class="bg-green-500 p-1 mt-3" id="button" type="button">Enregistrer</button>
+                <button class="mb-4 bg-red-500" type="button" onclick="fermerform()">Fermer</button>
+            </div>
+            <div id="erreur" class="text-xm text-red-200"></div>
+
+
+
+        </form>
+
+    </div>
+
+
+
+
+    <script>
+        let nom = document.getElementById("nom").value
+        let adresse = document.getElementById("adresse").value
+        let mail = document.getElementById("mail").value
+        let tel = document.getElementById("tel").value
+        let nuit = document.getElementById("nuit").value
+        let form = document.getElementById("hot")
+
+        function ouvirform() {
+
+            document.getElementById("modal").classList.remove("hidden");
+        }
+        function fermerform() {
+            document.getElementById("modal").classList.add("hidden");
+        }
+        let btn = document.getElementById("button");
+
+        let table = JSON.parse(localStorage.getItem("key")) || [];
+        function sauvegarder() {
+            localStorage.setItem("key", JSON.stringify(table));
+        }
+
+        function afficher() {
+            document.getElementById("compteur").textContent = table.length;
+
+
+            document.getElementById("card").innerHTML = table
+                .map((f, i) => `
+    <div class="bg-white rounded-xl overflow-hidden border border-gray-200">
+                <img src="${f.photo}" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <p class="text-red-500">${f.adresse}</p>
+                    <p class="text-xl font-bold">${f.nom}</p>
+                    <p class="mt-2">${f.nuit} XOF / nuit</p>
+                </div>
+            </div>
+    `
+                ).join("");
+        }
+        let imageBase64 = null;
+
+        function previewImage(input) {
+            const fichier = input.files[0];
+            if (!fichier) return;
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                imageBase64 = e.target.result;
+                const img = document.getElementById("preview");
+                img.src = imageBase64;
+                img.classList.remove("hidden");
+
+                document.getElementById("upload-zone").classList.add("hidden");
+            };
+            reader.readAsDataURL(fichier);
+        }
+
+        btn.addEventListener("click", function () {
+            let nom = document.getElementById("nom").value
+            let adresse = document.getElementById("adresse").value
+            let mail = document.getElementById("mail").value
+            let tel = document.getElementById("tel").value
+            let nuit = document.getElementById("nuit").value;
+
+
+            if (!nom || !adresse || !mail || !tel || !nuit || !imageBase64) {
+                document.getElementById("erreur").textContent = "remplir tous les champs"
+                return
+            }
+
+            let n = parseInt(nuit)
+
+            if (isNaN(n)) {
+                document.getElementById("erreur").textContent = "remplir une somme valable"
+                return
+            }
+            document.getElementById("erreur").textContent = "";
+
+            table.push({ photo: imageBase64, adresse, nom, nuit: n })
+
+
+
+
+            afficher();
+            sauvegarder();
+            document.getElementById("nom").value = "";
+            document.getElementById("adresse").value = "";
+            document.getElementById("mail").value = "";
+            document.getElementById("tel").value = "";
+            document.getElementById("nuit").value = "";
+            document.getElementById("preview").classList.add("hidden");
+            document.getElementById("upload-zone").classList.remove("hidden");
+            imageBase64 = null;
+        })
+        afficher();
+
+        function toggleMenu() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+
+            sidebar.classList.toggle('-translate-x-full');
+            sidebar.classList.toggle('translate-x-0');
+            overlay.classList.toggle('hidden');
+        }
+
+        function fermerMenu() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+
+            sidebar.classList.add('-translate-x-full');
+            sidebar.classList.remove('translate-x-0');
+            overlay.classList.add('hidden');
+        }
+
+        afficher();
+    </script>
+
+</body>
+
+</html>
