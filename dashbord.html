@@ -12,10 +12,14 @@
 </head>
 
 <body class="bg-gray-200">
+     <div id="overlay" onclick="fermerMenu()" class="hidden fixed inset-0 bg-black/40 z-30 lg:hidden"></div>
     <div class="flex flex-col sm:flex-col md:flex-col  lg:flex-row bg-white">
 
 
-        <div class="bg-gray-600 w-full lg:w-[250px] h-auto lg:h-screen ">
+
+        <div class="fixed top-0 left-0 min-h-screen w-[250px] bg-gray-600 z-40
+           -translate-x-full lg:translate-x-0 lg:static
+           transition-transform duration-300 " id="sidebar">
             <div class="flex">
                 <img src="image.svg" alt="">
                 <h1 class="text-white m-2 font-bold"> RED PRODUCT</h1>
@@ -25,41 +29,52 @@
             <div class="flex flex-col mt-2">
                 <p class="text-white">Principale</p>
                 <div class="flex m-2 hover:bg-white">
-                    <img src="img/dashboard.svg" alt="" w-[10px]> <a href="" class="p-2 "> Dashbord</a>
+                    <img src="img/dashboard.svg" alt="" w-[10px]><a href="dashbord.html" class="p-2 "> Dashbord</a>
                 </div>
-                <div class="flex m-2 hover:bg-white"> 
+                <div class="flex m-2 hover:bg-white">
 
-                    <img src="liste.svg" class="w-[24px]" alt=""><a href="both.html" class="p-2">Liste des hotels</a>
+                    <img src="liste.svg" class="w-[24px]" alt=""><a href="both.html" class="p-2 m-2">Liste des hotels</a>
                 </div>
             </div>
         </div>
 
 
-        <div class="flex flex-col flex-1  border border-black">
+        <div class="flex flex-col flex-1  ">
 
 
-            <div class="m-2 flex flex-col gap-2 lg:flex-row lg:justify-between lg:items-center ">
+            <div class="m-2 flex  gap-2  lg:flex-row lg:justify-between lg:items-center ">
+                <div class="flex">
+                    <button onclick="toggleMenu()"
+                        class="lg:hidden    bg-gr text-black p-2 rounded-lg">
+                        ☰
+                    </button>
+                    <h2 class="font-bold text-[16px] mt-2 md:text-2xl lg:text-2xl"> Dashboard </h2>
 
-                <h2 class="font-bold">Dashboard</h2>
+                </div>
 
-                <div class="flex flex-col gap-2 lg:flex-row lg:items-center">
-
-                    <input type="text" placeholder="🔍Rechercher"
-                        class="rounded-2xl border border-black p-1 w-full lg:w-auto">
-
+                <div class="flex flex gap-2  sm:flex-row md:flex-row  lg:flex-row lg:items-center">
+                    <div>
+                        <input type="text" placeholder="🔍Rechercher"
+                            class="rounded-2xl border border-black p-1 w-full lg:w-auto">
+                    </div>
                     <div class="relative cursor-pointer">
                         <span class="text-2xl">🔔</span>
                         <span
-                            class="absolute -top-2 -right-2 bg-yellow-400 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                            class="absolute -top-2 right-2 bg-yellow-400 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
                             3
                         </span>
                     </div>
+                    <div class="flex flex-direction  ">
+                        <div class="relative">
+                             <img src="img/img_moi.jpg" class="rounded-full w-9 h-9 cursor-pointer ">
+                        <img src="pointvert.svg " alt="" class="absolute bottom-2 right-0">
+                        </div>
+                       
 
-                    <img src="img/img_moi.jpg" class="rounded-full w-9 h-9 cursor-pointer">
-                    <div>
-                        <img src="dec.svg" alt="" class="w-9 h-9">
+                        <div>
+                            <img src="dec.svg" alt="" class="w-9 h-9">
+                        </div>
                     </div>
-
                 </div>
 
             </div>
@@ -70,7 +85,7 @@
                 <p>lorem ispromn later flatr issi postable</p>
             </div>
 
-            <div class="bg-gray-100 w-full h-full m-2">
+            <div class="bg-gray-100  h-full m-2">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     <div class="bg-white rounded-lg p-2 m-2 flex ">
                         <div><img src="C1.svg" alt=""></div>
@@ -127,7 +142,7 @@
 
 
 
-
+<script src="projet.js"></script>
 </body>
 
 </html>
