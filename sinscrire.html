@@ -4,44 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page d'inscription</title>
-     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-600">
-     <div class=" flex items-center justify-center mt-[96px] ">
 
-            <div class="">
-                <div>
-                    <p class="text-white font-bold mb-[10px] ml-[140px]">RED PRODUCT</p>
-                </div>
-                <form action="" class="w-[384px] h-[424,25px] bg-white rounded-[4px] flex-col flex justify-center">
-                    <p class="m-2">Inscriver vous en tant que Admin</p>
-                    <div class=" border-b p-3 m-2">
-                        <input type="email" name="" id="" placeholder="Nom">
-                    </div>
-                    <div class=" border-b p-3 m-2">
-                        <input type="email" name="" id="" placeholder="E-mail">
-                    </div>
+<body class="bg-gray-600 min-h-screen flex items-center justify-center p-4">
 
-                    <div class="mt-5  border-b p-3 m-2">
-                        <input type="password" name="" id="" placeholder="Mot de passe">
+    <div class="w-full max-w-md">
 
-                    </div>
-                    <div class="mt-5 m-2">
-                        <input type="checkbox" name="" id="">
-                        <label for="">Accepter les termes et la politique</label>
+        <!-- titre -->
+        <p class="text-white font-bold mb-4 text-center text-xl">RED PRODUCT</p>
 
-                    </div>
+        <!-- formulaire -->
+        <form action="" class="bg-white rounded-lg p-6 flex flex-col gap-4 w-full">
 
+            <p class="font-semibold text-gray-700">Inscrivez vous en tant que Admin</p>
 
-                    <button  onclick="window.location.href='dashbord.html'" class="mt-4 p-2 bg-gray-700 rounded-lg w-[320px] ml-[32px] mb-2 text-white" type="button">S'
-                        inscrire</button>
-                </form>
-                <div class="flex flex-col items-center">
-                    
-                    <p>Vous n avez pas de compte? <a href="Accueil.html" class="text-yellow-300">Se connecter</a></p>
-                </div>
-
+            <div class="border-b pb-2">
+                <input type="text" id="nom" placeholder="Nom"
+                    class="w-full outline-none p-1">
             </div>
-        </div>
+
+            <div class="border-b pb-2">
+                <input type="email" id="email" placeholder="E-mail"
+                    class="w-full outline-none p-1">
+            </div>
+
+            <div class="border-b pb-2">
+                <input type="password" id="password" placeholder="Mot de passe"
+                    class="w-full outline-none p-1">
+            </div>
+
+            <div class="flex items-center gap-2">
+                <input type="checkbox" id="confirm">
+                <label for="confirm" class="text-sm text-gray-600">
+                    Accepter les termes et la politique
+                </label>
+            </div>
+
+            <div id="erreur" class="text-red-500 text-sm"></div>
+
+            <button onclick="register()" type="button"
+                class="bg-gray-700 text-white p-3 rounded-lg w-full hover:bg-gray-800">
+                S'inscrire
+            </button>
+
+        </form>
+
+        <!-- lien connexion -->
+        <p class="text-center text-white mt-4 text-sm">
+            Vous avez déjà un compte ?
+            <a href="index.html" class="text-yellow-300 hover:underline">Se connecter</a>
+        </p>
+
+    </div>
+
+    <script src="api.js"></script>
+    <script src="inscription.js"></script>
 </body>
 </html>

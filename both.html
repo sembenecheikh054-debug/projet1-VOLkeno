@@ -31,13 +31,19 @@
 
             <div class="flex flex-col mt-2">
                 <p class="text-white">Principale</p>
-                <div class="flex m-2 hover:bg-white">
-                    <img src="img/dashboard.svg" alt="" w-[10px]><a href="dashbord.html" class="p-2 "> Dashbord</a>
-                </div>
-                <div class="flex m-2 hover:bg-white">
+                <button type="button"
+                    class="nav-btn flex items-center gap-2 m-2 p-2 rounded-lg text-white hover:bg-white hover:text-black"
+                    onclick="window.location.href='dashbord.html'">
+                    <img src="C7.svg" alt="">
+                    <span>Dashboard</span>
+                </button>
 
-                    <img src="liste.svg" class="w-[24px]" alt=""><a href="" class="p-2 m-2">Liste des hotels</a>
-                </div>
+                <button type="button"
+                    class="nav-btn flex items-center gap-2 m-2 p-2 rounded-lg text-white hover:bg-white hover:text-black"
+                    onclick="window.location.href='both.html'">
+                    <img src="liste.svg" class="w-6" alt="">
+                    <span>Liste des hotels</span>
+                </button>
             </div>
         </div>
 
@@ -45,22 +51,22 @@
         <div class="flex flex-col flex-1  w-full">
 
 
-            <div class="m-2 flex  gap-2  lg:flex-row lg:justify-between lg:items-center sm:justify-between sm:items-center  md:justify-between  ">
-               
+            <div
+                class="m-2 flex  gap-2  lg:flex-row lg:justify-between lg:items-center sm:justify-between sm:items-center  md:justify-between  ">
+
                 <div class="flex">
-                    <button onclick="toggleMenu()"
-                        class="lg:hidden    bg-gr text-black p-2 rounded-lg">
+                    <button onclick="toggleMenu()" class="lg:hidden    bg-gr text-black p-2 rounded-lg">
                         ☰
                     </button>
                     <h2 class="font-bold text-[16px] mt-2 md:text-2xl lg:text-2xl"> Liste des Hotels </h2>
 
                 </div>
-              
 
-                <div class="flex flex gap-2  sm:flex-row md:flex-row  lg:flex-row lg:items-center ">
+
+                <div class="flex flex gap-2  sm:flex-row md:flex-row  lg:flex-row lg:items-center">
                     <div>
-                        <input type="text" placeholder="🔍Rechercher"
-                            class="rounded-2xl border border-black p-1 w-full lg:w-auto">
+                        <input type="text" placeholder="🔍Rechercher" id="Recherche"
+                            class="rounded-2xl border border-black p-1 w-full lg:w-auto " oninput="filtrer()">
                     </div>
                     <div class="relative cursor-pointer">
                         <span class="text-2xl">🔔</span>
@@ -69,14 +75,84 @@
                             3
                         </span>
                     </div>
-                    <div class="flex flex-direction">
-                        <img src="img/img_moi.jpg" class="rounded-full w-9 h-9 cursor-pointer">
+                    <div class="flex flex-direction  ">
+                        <div class="relative cursor-pointer" onclick="ouvrirModalProfil()">
+                            <img id="photoProfil" src="img/img_moi.jpg"
+                                class="rounded-full w-9 h-9 object-cover border-2 border-white">
+                                <span id="nomUser" class="text-sm font-semibold"></span>
+                                
+                            <img src="pointvert.svg " alt="" class="absolute bottom-4 right-0">
+                        </div>
+
+
                         <div>
-                            <img src="dec.svg" alt="" class="w-9 h-9">
+                            <button type="button" onclick="ouvrirModalDeconnexion()"><img src="dec.svg" alt=""
+                                    class="w-9 h-9 cursor-pointer"></button>
                         </div>
                     </div>
                 </div>
 
+            </div>
+
+
+
+            <!-- modal profil -->
+            <div id="modalProfil" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+                <div class="bg-white rounded-xl p-6 w-full max-w-sm">
+
+                    <h2 class="text-lg font-bold mb-4">Mon profil</h2>
+
+                    <!-- photo actuelle -->
+                    <div class="flex flex-col items-center mb-4">
+                        <img id="previewProfil" src="default-avatar.png"
+                            class="rounded-full w-24 h-24 object-cover border-2 border-gray-300 mb-2">
+                        <button onclick="document.getElementById('inputProfil').click()"
+                            class="text-sm text-blue-500 hover:underline">
+                            Changer la photo
+                        </button>
+                        <input type="file" id="inputProfil" accept="image/*" class="hidden"
+                            onchange="previewPhotoProfil(this)">
+                    </div>
+
+                    <!-- nom -->
+                    
+
+                    
+
+                    <!-- boutons -->
+                    <div class="flex gap-3 justify-end">
+                        <button onclick="fermerModalProfil()" class="border px-4 py-2 rounded-lg hover:bg-gray-100">
+                            Annuler
+                        </button>
+                        <button onclick="sauvegarderProfil()"
+                            class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+                            Sauvegarder
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- modal confirmation -->
+            <div id="modalDeconnexion" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+                <div class="bg-white rounded-xl p-6 w-full max-w-sm mx-4">
+
+                    <h2 class="text-lg font-bold mb-2">Confirmer la déconnexion</h2>
+                    <p class="text-gray-500 text-sm mb-6">Voulez-vous vraiment vous déconnecter ?</p>
+
+                    <div class="flex gap-3 justify-end">
+                        <button onclick="fermerModalDeconnexion()"
+                            class="border px-4 py-2 rounded-lg hover:bg-gray-100">
+                            Annuler
+                        </button>
+                        <button onclick="deconnexion()"
+                            class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
+                            Se déconnecter
+                        </button>
+                    </div>
+
+                </div>
             </div>
 
             <!-- CONTENU -->
@@ -93,7 +169,7 @@
 
             <div class="  h-full m-2 ">
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 
-             gap-4 mt-2 bg-gray-200 " id="card"> 
+             gap-4 mt-2 bg-gray-200 " id="card">
 
 
                 </div>
@@ -104,75 +180,85 @@
         </div>
 
     </div>
+    <div class="fixed inset-0 z-50 bg-black/40 flex items-center justify-center hidden" id="modal">
+        <form class="border bg-white rounded-2xl w-full max-w-md mx-4 p-6 overflow-y-auto max-h-screen">
 
-    <div class="fixed inset-0 z-50 bg-black/40 flex items-center justify-center hidden " id="modal">
-        <form action="" class="border bg-white rounded-2xl w-full max-w-md mx-4 p-6">
+            <div class="bg-gray-200 rounded-lg mb-4 p-2 text-center font-semibold">CREER UN HOTEL</div>
 
-
-
-            <div class="bg-gray-200 rounded-lg mb-2">CREER UN HOTEL</div>
-            <div class="flex gap-4">
-                <div class="flex flex-col">
-                    <label for="nom">Nom de l hotel</label>
-                    <input type="text" placeholder="EX:RADISSON" value="" id="nom" class="border rounded-lg p-2">
+            <!-- nom + adresse -->
+            <div class="flex flex-col sm:flex-row gap-4 mb-4">
+                <div class="flex flex-col w-full">
+                    <label class="text-sm mb-1">Nom de l'hotel</label>
+                    <input type="text" placeholder="EX:RADISSON" id="nom" class="border rounded-lg p-2 w-full">
                 </div>
-                <div class="flex flex-col">
-                    <label for="adresse">Adresse </label>
-                    <input type="text" placeholder="EX:Les iles du saloum" value="" id="adresse"
-                        class="border rounded-lg p-2">
+                <div class="flex flex-col w-full">
+                    <label class="text-sm mb-1">Adresse</label>
+                    <input type="text" placeholder="EX:Les iles du saloum" id="adresse"
+                        class="border rounded-lg p-2 w-full">
+                </div>
+            </div>
+
+            <!-- email + tel -->
+            <div class="flex flex-col sm:flex-row gap-4 mb-4">
+                <div class="flex flex-col w-full">
+                    <label class="text-sm mb-1">Email</label>
+                    <input type="email" placeholder="EX:info@gmail.com" id="mail" class="border rounded-lg p-2 w-full">
+                </div>
+                <div class="flex flex-col w-full">
+                    <label class="text-sm mb-1">Numéro de téléphone</label>
+                    <input type="number" placeholder="EX:77 680 16 97" id="tel" class="border rounded-lg p-2 w-full">
                 </div>
             </div>
 
-            <div class="flex gap-4">
-                <div class="flex flex-col">
-                    <label for="mail">Email</label>
-                    <input type="email" placeholder="EX:info@gmail.com" value="" id="mail"
-                        class="border rounded-lg p-2 NN">
+            <!-- nuit + devise -->
+            <div class="flex flex-col sm:flex-row gap-4 mb-4">
+                <div class="flex flex-col w-full">
+                    <label class="text-sm mb-1">Par nuit</label>
+                    <input type="number" placeholder="EX:22000 XOF" id="nuit" class="border rounded-lg p-2 w-full">
                 </div>
-                <div class="flex flex-col">
-                    <label for="tel">Numero de telephone </label>
-                    <input type="number" placeholder="EX:77 680 16 97" value="" id="tel" class="border rounded-lg p-2">
-                </div>
-            </div>
-            <div class="flex gap-4">
-                <div class="flex flex-col">
-                    <label for="nuit">Par nuit</label>
-                    <input type="number" placeholder="EX:22000 XOF" value="" id="nuit" class="border rounded-lg p-2">
-                </div>
-                <div class="flex flex-col">
-                    <label for="Devise">Devise </label>
-                    <select class="border p-2" name="" id="Devise">
-                        <option value="">F XOF</option>
+                <div class="flex flex-col w-full">
+                    <label class="text-sm mb-1">Devise</label>
+                    <select id="Devise" class="border rounded-lg p-2 w-full">
+                        <option>F XOF</option>
                         <option>XOF</option>
                         <option>Euro</option>
                         <option>Dollar</option>
-
                     </select>
                 </div>
             </div>
+
+            <!-- preview image -->
             <img id="preview" class="hidden w-full h-20 object-cover rounded-lg mb-4 border">
 
-            <div>
+            <button type="button" id="btn-changer-photo" onclick="changerPhoto()"
+                class="hidden w-full text-sm text-blue-500 border border-blue-400 rounded-lg p-2 mb-2 hover:bg-blue-50">
+                🔄 Changer la photo
+            </button>
 
-                <div id="upload-zone" onclick="document.getElementById('photo').click()"
-                    class="border-2 border-dashed mt-2 border-gray-300 rounded-lg p-6 text-center text-gray-400 cursor-pointer hover:border-blue-400 mb-4">
-                    📷 Cliquer pour choisir une image
 
-
-                    <input type="file" src="" alt="" id="photo" accept="image/*" class="hidden"
-                        onchange="previewImage(this)">
-
-                </div>
+            <!-- upload zone -->
+            <div id="upload-zone" onclick="document.getElementById('photo').click()"
+                class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center text-gray-400 cursor-pointer hover:border-blue-400 mb-4">
+                📷 Cliquer pour choisir une image
+                <input type="file" id="photo" accept="image/*" class="hidden" onchange="previewImage(this)">
             </div>
+
+            <!-- boutons -->
             <div class="flex justify-between items-center">
-                <button class="bg-green-500 p-1 mt-3" id="button" type="button">Enregistrer</button>
-                <button class="mb-4 bg-red-500" type="button" onclick="fermerform()">Fermer</button>
+                <button id="button" type="button"
+                    class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+                    Enregistrer
+                </button>
+                <button type="button" onclick="fermerform()"
+                    class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
+                    Fermer
+                </button>
             </div>
-            <div id="erreur" class="text-xm text-red-200"></div>
 
-
+            <div id="erreur" class="text-sm text-red-500 mt-2"></div>
 
         </form>
+    </div>
 
     </div>
 
@@ -180,7 +266,7 @@
 
 
     <script src="projet.js"></script>
-       
+
 </body>
 
 </html>

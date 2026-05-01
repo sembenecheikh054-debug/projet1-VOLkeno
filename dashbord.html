@@ -13,7 +13,7 @@
 
 <body class="bg-gray-200">
      <div id="overlay" onclick="fermerMenu()" class="hidden fixed inset-0 bg-black/40 z-30 lg:hidden"></div>
-    <div class="flex flex-col sm:flex-col md:flex-col  lg:flex-row bg-white">
+     <div class="flex flex-col sm:flex-col md:flex-col  lg:flex-row bg-white">
 
 
 
@@ -26,16 +26,21 @@
 
             </div>
 
-            <div class="flex flex-col mt-2">
-                <p class="text-white">Principale</p>
-                <div class="flex m-2 hover:bg-white">
-                    <img src="img/dashboard.svg" alt="" w-[10px]><a href="dashbord.html" class="p-2 "> Dashbord</a>
-                </div>
-                <div class="flex m-2 hover:bg-white">
+            <div class="flex flex-col mt-2 p-2">
+    <p class="text-white">Principale</p>
 
-                    <img src="liste.svg" class="w-[24px]" alt=""><a href="both.html" class="p-2 m-2">Liste des hotels</a>
-                </div>
-            </div>
+    <button type="button" class="nav-btn flex items-center gap-2 m-2 p-2 rounded-lg text-white hover:bg-white hover:text-black" 
+        onclick="window.location.href='dashbord.html'">
+        <img src="C7.svg" alt="">
+        <span>Dashboard</span>
+    </button>
+
+    <button type="button" class="nav-btn flex items-center gap-2 m-2 p-2 rounded-lg text-white hover:bg-white hover:text-black"
+        onclick="window.location.href='both.html'">
+        <img src="liste.svg" class="w-6" alt="">
+        <span>Liste des hotels</span>
+    </button>
+</div>
         </div>
 
 
@@ -65,19 +70,83 @@
                         </span>
                     </div>
                     <div class="flex flex-direction  ">
-                        <div class="relative">
-                             <img src="img/img_moi.jpg" class="rounded-full w-9 h-9 cursor-pointer ">
-                        <img src="pointvert.svg " alt="" class="absolute bottom-2 right-0">
+                        <div class="relative cursor-pointer" onclick="ouvrirModalProfil()">
+                            <img id="photoProfil" src="img/img_moi.jpg"
+                                class="rounded-full w-9 h-9 object-cover border-2 border-white">
+                            <img src="pointvert.svg " alt="" class="absolute bottom-2 right-0">
                         </div>
                        
 
                         <div>
-                            <img src="dec.svg" alt="" class="w-9 h-9">
+                            <button type="button" onclick="ouvrirModalDeconnexion()"><img src="dec.svg" alt="" class="w-9 h-9 cursor-pointer"></button>
                         </div>
                     </div>
                 </div>
 
             </div>
+
+
+             <div id="modalProfil" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+                <div class="bg-white rounded-xl p-6 w-full max-w-sm">
+
+                    <h2 class="text-lg font-bold mb-4">Mon profil</h2>
+
+                    <!-- photo actuelle -->
+                    <div class="flex flex-col items-center mb-4">
+                        <img id="previewProfil" src="default-avatar.png"
+                            class="rounded-full w-24 h-24 object-cover border-2 border-gray-300 mb-2">
+                        <button onclick="document.getElementById('inputProfil').click()"
+                            class="text-sm text-blue-500 hover:underline">
+                            Changer la photo
+                        </button>
+                        <input type="file" id="inputProfil" accept="image/*" class="hidden"
+                            onchange="previewPhotoProfil(this)">
+                    </div>
+
+                    <!-- nom -->
+                    <div class="flex flex-col gap-2 mb-4">
+                        <label class="text-sm text-gray-600">Nom</label>
+                        <input type="text" id="nomProfil" class="border rounded-lg p-2 w-full">
+                    </div>
+
+                    <div id="erreurProfil" class="text-red-500 text-sm mb-2"></div>
+
+                    <!-- boutons -->
+                    <div class="flex gap-3 justify-end">
+                        <button onclick="fermerModalProfil()" class="border px-4 py-2 rounded-lg hover:bg-gray-100">
+                            Annuler
+                        </button>
+                        <button onclick="sauvegarderProfil()"
+                            class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+                            Sauvegarder
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- modal confirmation -->
+<div id="modalDeconnexion"
+    class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+    <div class="bg-white rounded-xl p-6 w-full max-w-sm mx-4">
+
+        <h2 class="text-lg font-bold mb-2">Confirmer la déconnexion</h2>
+        <p class="text-gray-500 text-sm mb-6">Voulez-vous vraiment vous déconnecter ?</p>
+
+        <div class="flex gap-3 justify-end">
+            <button onclick="fermerModalDeconnexion()"
+                class="border px-4 py-2 rounded-lg hover:bg-gray-100">
+                Annuler
+            </button>
+            <button onclick="deconnexion()"
+                class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
+                Se déconnecter
+            </button>
+        </div>
+
+    </div>
+</div>
 
             <!-- CONTENU -->
             <div class="p-4">
@@ -96,35 +165,35 @@
                     </div>
                     <div class="bg-white rounded-lg p-2 m-2 flex ">
                         <div><img src="C5.svg" alt=""></div>
-                        <div>
+                        <div class="p-2">
                         <p>125 formulaire</p>
                         <p>je suis les formulaires</p>
                         </div>
                     </div>
                     <div class="bg-white rounded-lg p-2 m-2 flex ">
                         <div><img src="c2.svg" alt=""></div>
-                        <div>
+                        <div class="p-2">
                         <p>125 formulaire</p>
                         <p>je suis les formulaires</p>
                         </div>
                     </div>
                     <div class="bg-white rounded-lg p-2 m-2 flex ">
                         <div><img src="C4.svg" alt=""></div>
-                        <div>
+                        <div class="p-2">
                         <p>40  Messages</p>
                         <p>je suis les Messages</p>
                         </div>
                     </div>
                     <div class="bg-white rounded-lg p-2 m-2 flex ">
                         <div><img src="C3.svg" alt=""></div>
-                        <div>
+                        <div class="p-2">
                         <p>600 Etudes</p>
                         <p>j' ai etudié</p>
                         </div>
                     </div>
                     <div class="bg-white rounded-lg p-2 m-2 flex ">
                         <div><img src="C4.svg" alt=""></div>
-                        <div>
+                        <div class="p-2">
                         <p>125 formulaire</p>
                         <p>je suis les formulaires</p>
                         </div>
