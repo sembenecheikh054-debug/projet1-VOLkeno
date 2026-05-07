@@ -269,3 +269,6 @@ function changerPhoto() {
     imageBase64 = null;
 }
 localStorage.removeItem("nom");
+
+
+//https://backend-projet1.onrender.com

@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000";
+const API_URL = "https://back-yg1g.onrender.com";
 
 const request = async (url, method = "GET", data = null) => {
     const res = await fetch(API_URL + url, {
