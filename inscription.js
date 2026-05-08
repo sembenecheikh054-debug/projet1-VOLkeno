@@ -25,6 +25,7 @@ async function register() {
     console.log(res);
 
     // succès inscription
+    // succès inscription
     if (res.message === "Compte créé. Vérifiez votre email ✅") {
 
         erreur.classList.remove("text-red-500");
@@ -41,6 +42,8 @@ async function register() {
         erreur.classList.add("text-red-500");
 
         erreur.textContent =
-            res.message || "Erreur";
+            res.error ||
+            res.message ||
+            "Erreur serveur";
     }
 }
