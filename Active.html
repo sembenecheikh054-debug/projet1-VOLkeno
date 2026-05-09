@@ -37,7 +37,7 @@
             }
 
             try {
-                const res = await fetch(`${API}/activate/${token}`);
+                const res = await fetch(`${API}/verify/${token}`);
                 const data = await res.json();
 
                 if (res.ok) {
