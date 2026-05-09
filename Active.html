@@ -43,8 +43,12 @@
                 if (res.ok) {
                     msg.textContent = "✅ Compte activé !";
                     msg.className = "text-lg font-bold mb-4 text-green-500";
-                    sub.textContent = "Vous pouvez maintenant vous connecter.";
-                    link.classList.remove("hidden");
+                    sub.textContent = "Redirection en cours...";
+
+                    // ✅ redirige vers both.html après 2 secondes
+                    setTimeout(() => {
+                        window.location.href = "both.html";
+                    }, 2000);
                 } else {
                     msg.textContent = "❌ " + (data.message || "Erreur");
                     msg.className = "text-lg font-bold mb-4 text-red-500";
