@@ -1,5 +1,4 @@
 async function resetPassword() {
-    // récupère le token depuis l'URL
     const params   = new URLSearchParams(window.location.search);
     const token    = params.get("token");
     const password = document.getElementById("password").value;
@@ -20,8 +19,12 @@ async function resetPassword() {
 
     const res = await request("/auth/reset-password", "POST", { token, password });
 
-    message.textContent = res.message;
-    if (res.message.includes("✅")) {
+    message.textContent = res.message || res.error;
+    message.className = res.message && res.message.includes("✅")
+        ? "text-green-500 text-sm"
+        : "text-red-500 text-sm";
+
+    if (res.message && res.message.includes("✅")) {
         setTimeout(() => window.location.href = "index.html", 2000);
     }
 }
